@@ -8,10 +8,13 @@
  */
 
 namespace Eef\Includes;
+require_once( 'widgets/class_customskin_posts.php' );
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Global_Colors;
+use Elementor\Skin_Base as Elementor_Skin_Base;
+
 
 if (!defined('ABSPATH')) {
     exit;
@@ -138,6 +141,16 @@ class Elementor_Custom_Heading_Extension{
         $element->end_controls_section(); 
     }
 }
+
+
+// Inclua o arquivo da sua skin
+
+
+// Adicione sua skin personalizada na inicialização do Elementor
+add_action( 'elementor/elements/posts/skins_registered', function( $widget ) {
+    $widget->add_skin( new \element\Skins\Skin_Custom( $widget ) );
+} );
+
 
 
 new Elementor_Custom_Form_Extension();
